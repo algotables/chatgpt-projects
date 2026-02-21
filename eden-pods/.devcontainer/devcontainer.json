@@ -1,0 +1,22 @@
+{
+  "name": "Eden Pods",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [3000, 4000, 9099, 8080, 5001, 5000],
+  "postCreateCommand": "npm install",
+  "containerEnv": {
+    "PORT": "3000",
+    "HOSTNAME": "0.0.0.0"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "firebase.firebase-vscode"
+      ]
+    }
+  }
+}
