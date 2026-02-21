@@ -1,0 +1,25 @@
+{
+  "name": "eden-pods",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web",
+    "firebase/functions"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n EMU,WEB,SCHED \"npm run emulators\" \"npm run web\" \"npm run scheduler:dev\"",
+    "emulators": "firebase emulators:start --config firebase/firebase.json --project demo-edenpods --import ./.firebase-data --export-on-exit",
+    "web": "npm --workspace apps/web run dev",
+    "functions:build": "npm --workspace firebase/functions run build",
+    "seed": "tsx scripts/seed.ts",
+    "scheduler:dev": "node scripts/scheduler-dev.mjs",
+    "lint": "npm --workspace apps/web run lint && npm --workspace firebase/functions run lint",
+    "test": "npm --workspace apps/web run test && npm --workspace firebase/functions run test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "firebase-admin": "^13.1.0",
+    "firebase-tools": "^13.34.0",
+    "tsx": "^4.19.3"
+  }
+}
